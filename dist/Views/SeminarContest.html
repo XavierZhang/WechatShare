@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<link rel="stylesheet" href="../lib/swiper/dist/css/swiper.min.css" />
+	<link rel="stylesheet" href="../animate/animate.min.css" />
+	<link rel="stylesheet" href="../css/html_share.min.css" />
+	<link rel="stylesheet" href="../css/loaders.min.css">
+	<title>玫琳凯20周年</title>
+</head>
+<body>
+
+	<div class="loaders center" id="loading">
+		<div class="pacman">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
+	<div class="swiper-container" id="divSwiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide index-bg font-style">
+				<header id="slide1Header" class="ani center" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">slide1Header</header>
+			</div>
+			<div class="swiper-slide">
+				<header id="slide2Header" class="ani center" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">slide2Header</header>
+			</div>
+			<div class="swiper-slide index-bg font-style">
+				<header id="slide3Header" class="ani center" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">slide3Header</header>
+			</div>
+			<div class="swiper-slide index-bg font-style">
+				<header id="slide4Header" class="ani center" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">slide4Header</header>
+			</div>
+			<div class="swiper-slide index-bg font-style">
+				<header id="slide5Header" class="ani center" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">slide5Header</header>
+			</div>
+		</div>
+
+		<a id="next-btn" href="javascript:;"></a>
+	</div>
+
+	
+	<script src="../lib/jquery/dist/jquery.min.js"></script>
+	<script src="../lib/swiper/dist/js/swiper.min.js"></script>
+	<script src="../lib/uri/src/uri.min.js"></script>
+	<script src="../animate/swiper.animate1.0.2.min.js"></script>	
+	<script>
+	$(document).ready(function() {
+		$("#loading").css({display:"flex"});
+		$("#divSwiper").hide();
+
+		var uri = new URI();
+		var s = uri.search(true);
+
+		$.get("http://uat.api.marykayintouch.com.cn/myBusiness2/v1/Share/Contest/" + s.ContactID, {"Date": s["Date"]})
+		.done(function(data) {
+			console.log(data);
+			$("#slide1Header").html(data.FullName);
+			$("#slide2Header").html(data.ContactID);
+			$("#slide3Header").html(data.DirectSellerID);
+			$("#slide4Header").html(data.CurrentLevelDescription);
+			$("#slide5Header").html(data.DirectorDebutDate.split("T")[0]);
+
+			$("#loading").hide();
+			$("#divSwiper").show();
+
+			//innit swiper
+			var swiper = new Swiper(".swiper-container",{
+				direction: "vertical",
+				loop: true,
+				nextButton:"#next-btn",
+
+				onInit: function(swiper){
+					swiperAnimateCache(swiper); //隐藏动画元素 
+	    			swiperAnimate(swiper); //初始化完成开始动画
+				},
+				onSlideChangeEnd: function(swiper){ 
+					swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+				} 
+			});
+		})
+		.fail(function(e) {
+			console.log(e);
+		})
+	});
+	</script>
+</body>
+</html>

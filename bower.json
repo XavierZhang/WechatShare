@@ -1,0 +1,31 @@
+{
+  "name": "myBusiness.China.Share",
+  "version": "0.0.1",
+  "description": "The html5 project for sharing of myBusiness team.",
+  "main": "index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "html5"
+  ],
+  "authors": [
+    "Xavier Zhang"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "swiper": "~3.0.8",
+    "underscore": "~1.8.3",
+    "bootstrap": "~3.3.4",
+    "uri": "uri.js#~1.15.1",
+    "loader": "loaders.css#~0.1.1"
+  }
+}
