@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="../animate/animate.min.css" />
 	<link rel="stylesheet" href="../css/html_share.min.css" />
 	<link rel="stylesheet" href="../css/loaders.min.css">
-	<title>玫琳凯20周年</title>
+	<title>the template view for wechat share</title>
 </head>
 <body>
 
@@ -56,7 +56,7 @@
 		var uri = new URI();
 		var s = uri.search(true);
 
-		$.get("http://uat.api.marykayintouch.com.cn/myBusiness2/v1/Share/Contest/" + s.ContactID, {"Date": s["Date"]})
+		$.get("remote data url" + s.ContactID, {"Date": s["Date"]})
 		.done(function(data) {
 			console.log(data);
 			$("#slide1Header").html(data.FullName);
